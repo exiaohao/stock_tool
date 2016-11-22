@@ -2,8 +2,10 @@ __author__ = 'exiaohao@gmail.com'
 
 import requests
 import importlib
-
+import logging
 from ..exceptions import RequestException
+
+logger = logging.getLogger(__name__)
 
 
 class THSRequestLib:
@@ -26,6 +28,11 @@ class THSRequestLib:
         if result.status_code == 200:
             return result.text
         else:
+            logger.error('请求{stock_id}返回{status_code}:{text}'.format(
+                stock_id=stock_id,
+                status_code=result.status_code,
+                text=result.text,
+            ))
             raise RequestException(RequestException.BAD_STATUS_CODE)
 
     def data(self, stock_id):

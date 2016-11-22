@@ -6,6 +6,7 @@ __headers__ = {
 }
 
 import json
+import logging
 from ..exceptions import CrawlerException
 from ..libs.utils import try_int, try_float
 
